@@ -1,31 +1,31 @@
-import { Fragment, useContext, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useContext, useState } from 'react'
+import myContext from '../../context/data/myContext';
 import { BsFillCloudSunFill } from 'react-icons/bs'
 import { FiSun } from 'react-icons/fi'
-import myContext from '../../context/data/myContext'
+import { Link } from 'react-router-dom';
+import { Dialog, Transition } from '@headlessui/react'
 import { RxCross2 } from 'react-icons/rx'
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
 
-export default function Navbar() {
+function Navbar() {
+  const context = useContext(myContext);
+  const {mode, toggleMode} = context;
+
   const [open, setOpen] = useState(false)
 
-  const context = useContext(myContext)
-  const { toggleMode, mode } = context
+  const user = JSON.parse(localStorage.getItem('user'));
 
-const user = JSON.parse(localStorage.getItem('user'));
-// console.log(user.user.email)
+  // console.log(user.user.email)
 
-const logout = () => {
-  localStorage.clear('user');
-  window.location.href = '/login'
-}
+  const logout = () => {
+    localStorage.clear('user');
+    window.location.href = '/login'
+  }
 
-const cartItems = useSelector((state) => state.cart)
+  const cartItems = useSelector((state) => state.cart)
 
   return (
-    <div className="bg-white sticky top-0 z-50  "  >
-      {/* Mobile menu */}
+    <div className='bg-white sticky top-0 z-50'>
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
           <Transition.Child
@@ -66,43 +66,45 @@ const cartItems = useSelector((state) => state.cart)
                   <Link to={'/allproducts'} className="text-sm font-medium text-gray-900 " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     All Products
                   </Link>
-                  {user?
-                  <div className="flow-root">
-                  <Link to={'/order'} style={{ color: mode === 'dark' ? 'white' : '', }} className="-m-2 block p-2 font-medium text-gray-900">
-                    Order
-                  </Link>
-                </div>: ""}
 
-                  {user?.user?.email === "khizerbutt105@gmail.com" ?
-                   <div className="flow-root">
-                   <Link to={'/dashboard'} className="-m-2 block p-2 font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>
-                     admin
-                   </Link>
-                 </div> : ""}
-                 
-                 {user ? <div className="flow-root">
-                    <a className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" style={{ color: mode === 'dark' ? 'white' : '', }}>
+                  {user ? <div className="flow-root">
+                    <Link to={'/order'} style={{ color: mode === 'dark' ? 'white' : '', }} className="-m-2 block p-2 font-medium text-gray-900">
+                      Order
+                    </Link>
+                  </div> : ""}
+
+                  {user?.user?.email === "knupadhyay784@gmail.com" ? <div className="flow-root">
+                    <Link to={'/dashboard'} className="-m-2 block p-2 font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>
+                      admin
+                    </Link>
+                  </div> : ""}
+
+                {user ? <div className="flow-root">
+                    <a onClick={logout} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" style={{ color: mode === 'dark' ? 'white' : '', }}>
                       Logout
                     </a>
-                  </div> : ""}
-                  
+                  </div> : <div className="flow-root">
+                    <Link to={'/signup'}  className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer" style={{ color: mode === 'dark' ? 'white' : '', }}>
+                      Signup
+                    </Link>
+                  </div>}
                   <div className="flow-root">
                     <Link to={'/'} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer">
                       <img
                         className="inline-block w-10 h-10 rounded-full"
-                        src="https://visualpharm.com/assets/267/Admin-595b40b65ba036ed117d0dba.svg"
-                        alt="Khizer" />                                        </Link>
+                        src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
+                        alt="Dan_Abromov" />                                        </Link>
                   </div>
                 </div>
 
                 <div className="border-t border-gray-200 px-4 py-6">
                   <a href="#" className="-m-2 flex items-center p-2">
                     <img
-                      src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg"
+                      src="img/indiaflag.png"
                       alt=""
                       className="block h-auto w-5 flex-shrink-0"
                     />
-                    <span className="ml-3 block text-base font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>PAKISTAN</span>
+                    <span className="ml-3 block text-base font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>INDIA</span>
                     <span className="sr-only">, change currency</span>
                   </a>
                 </div>
@@ -112,10 +114,10 @@ const cartItems = useSelector((state) => state.cart)
         </Dialog>
       </Transition.Root>
 
-      {/* desktop  */}
       <header className="relative bg-white">
-        <p className="flex h-10 items-center justify-center bg-pink-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8" style={{ backgroundColor: mode === 'dark' ? 'rgb(62 64 66)' : '', color: mode === 'dark' ? 'white' : '', }}>
-          Get free delivery on orders over 3000 Rs
+        <p className="flex h-10 items-center justify-center bg-pink-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8" 
+        style={{ backgroundColor: mode === 'dark' ? 'rgb(62 64 66)' : '', color: mode === 'dark' ? 'white' : '', }}>
+          Get free delivery on orders over ₹300
         </p>
 
         <nav aria-label="Top" className="bg-gray-100 px-4 sm:px-6 lg:px-8 shadow-xl " style={{ backgroundColor: mode === 'dark' ? '#282c34' : '', color: mode === 'dark' ? 'white' : '', }}>
@@ -137,7 +139,7 @@ const cartItems = useSelector((state) => state.cart)
               <div className="ml-4 flex lg:ml-0">
                 <Link to={'/'} className='flex'>
                   <div className="flex ">
-                    <h1 className=' text-2xl font-bold text-black  px-2 py-1 rounded' style={{ color: mode === 'dark' ? 'white' : '', }}>E-PAK</h1>
+                    <h1 className=' text-2xl font-bold text-black  px-2 py-1 rounded' style={{ color: mode === 'dark' ? 'white' : '', }}>E-Bharat</h1>
                   </div>
                 </Link>
               </div>
@@ -148,44 +150,44 @@ const cartItems = useSelector((state) => state.cart)
                   <Link to={'/allproducts'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     All Products
                   </Link>
-                 {user?
-                  <Link to={'/order'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
-                  Order
-                </Link>: ""}
+                 {user ?  <Link to={'/order'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
+                    Order
+                  </Link> :   <Link to={'/signup'}  className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
+                      Signup
+                    </Link>}
 
-                  {user?.user?.email === 'khizerbutt105@gmail.com' ?
-                  <Link to={'/dashboard'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
+                  {user?.user?.email === 'knupadhyay784@gmail.com' ? 
+                   <Link to={'/dashboard'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     Admin
                   </Link> : ""}
-
-                 {user ?<a onClick={logout} className="text-sm font-medium text-gray-700 cursor-pointer  " style={{ color: mode === 'dark' ? 'white' : '', }}>
+                  
+                
+                 {user ?  <a onClick={logout} className="text-sm font-medium text-gray-700 cursor-pointer  " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     Logout
-                  </a>: ""}
+                  </a> : ""}
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
-                      src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg"
+                      src="https://ecommerce-sk.vercel.app/img/indiaflag.png"
                       alt=""
                       className="block h-auto w-5 flex-shrink-0"
                     />
-                    <span className="ml-3 block text-sm font-medium" style={{ color: mode === 'dark' ? 'white' : '', }}>PAKISTAN</span>
+                    <span className="ml-3 block text-sm font-medium" style={{ color: mode === 'dark' ? 'white' : '', }}>INDIA</span>
                   </a>
                 </div>
                 <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       className="inline-block w-10 h-10 rounded-full"
-                      src="https://visualpharm.com/assets/267/Admin-595b40b65ba036ed117d0dba.svg"
-                      alt="Khizer" />
+                      src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
+                      alt="Dan_Abromov" />
                   </a>
                 </div>
 
-                {/* Search */}
                 <div className="flex lg:ml-6">
                   <button className='' onClick={toggleMode}>
-                    {/* <MdDarkMode size={35} style={{ color: mode === 'dark' ? 'white' : '' }} /> */}
                     {mode === 'light' ?
                       (<FiSun className='' size={30} />
                       ) : 'dark' ?
@@ -213,3 +215,5 @@ const cartItems = useSelector((state) => state.cart)
     </div>
   )
 }
+
+export default Navbar
