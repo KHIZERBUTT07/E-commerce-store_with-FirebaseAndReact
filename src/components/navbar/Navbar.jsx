@@ -94,7 +94,7 @@ function Navbar() {
                     <Link to={'/'} className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer">
                       <img
                         className="inline-block w-10 h-10 rounded-full"
-                        src="https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2024/07/30/a782b9d957bb4da19da6fce863020ea3.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240730T194726Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20240730%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=9317f8ce08579f69073d4e33529cb19eb3f445eb2f20ca6304f06a5320db3df2"
+                        src="https://w7.pngwing.com/pngs/306/70/png-transparent-computer-icons-management-admin-silhouette-black-and-white-neck.png"
                         alt="khizer" />                                        </Link>
                   </div>
                 </div>
@@ -184,7 +184,7 @@ function Navbar() {
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       className="inline-block w-10 h-10 rounded-full"
-                      src="https://deeplor.s3.us-west-2.amazonaws.com/matting_original/2024/07/30/a782b9d957bb4da19da6fce863020ea3.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240730T194726Z&X-Amz-SignedHeaders=host&X-Amz-Expires=10800&X-Amz-Credential=AKIAROYXHKZUSZONTWIG%2F20240730%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Signature=9317f8ce08579f69073d4e33529cb19eb3f445eb2f20ca6304f06a5320db3df2"
+                      src="https://w7.pngwing.com/pngs/306/70/png-transparent-computer-icons-management-admin-silhouette-black-and-white-neck.png"
                       alt="error"/>
                   </a>
                 </div>
