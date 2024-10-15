@@ -87,9 +87,9 @@ function Cart() {
       key: "",
       key_secret: "",
       amount: parseInt(grandTotal * 100),
-      currency: "INR",
+      currency: "PKR",
       order_receipt: 'order_rcptid_' + name,
-      name: "E-Bharat",
+      name: "E-Pak",
       description: "for testing purpose",
       handler: function (response) {
         console.log(response)
